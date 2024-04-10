@@ -8,7 +8,16 @@ public static class StaticData
 
     public static void AddAnima(Animal animal)
     {
-        animals.Add(animal);
+        bool Exists = false;
+        foreach (var VARIABLE in animals)
+        {
+            if (VARIABLE.Id == animal.Id)
+            {
+                Exists = true;
+            }
+        }
+        if(!Exists)
+            animals.Add(animal);
     }
 
     public static List<Animal> GetAnimals()
@@ -46,15 +55,23 @@ public static class StaticData
     public static void EditAnimal(int id, Animal animal)
     {
         Animal AnimalToRemove = null;
+        bool Exists = false;
         foreach (var VARIABLE in animals)
         {
             if (VARIABLE.Id == id)
             {
                 AnimalToRemove = VARIABLE;
             }
+            else if (VARIABLE.Id == animal.Id)
+            {
+                Exists = true;
+            }
         }
-        if(AnimalToRemove != null)
+
+        if (AnimalToRemove != null && !Exists)
+        {
             animals.Remove(AnimalToRemove);
-        animals.Add(animal);
+            animals.Add(animal);
+        }
     }
 }

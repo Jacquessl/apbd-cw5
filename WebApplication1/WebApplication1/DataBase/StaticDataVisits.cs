@@ -8,7 +8,16 @@ public class StaticDataVisits
 
     public static void AddVisit(Visit Visit)
     {
-        Visits.Add(Visit);
+        bool Exists = false;
+        foreach (var VARIABLE in Visits)
+        {
+            if (VARIABLE.Id == Visit.Id)
+            {
+                Exists = true;
+            }
+        }
+        if(!Exists)
+            Visits.Add(Visit);
     }
 
     public static List<Visit> GetVisits()
@@ -46,16 +55,23 @@ public class StaticDataVisits
     public static void EditVisit(int id, Visit Visit)
     {
         Visit VisitToRemove = null;
+        bool Exists = false;
         foreach (var VARIABLE in Visits)
         {
             if (VARIABLE.Id == id)
             {
                 VisitToRemove = VARIABLE;
             }
+            else if (VARIABLE.Id == Visit.Id)
+            {
+                Exists = true;
+            }
         }
 
-        if (VisitToRemove != null)
+        if (VisitToRemove != null && !Exists)
+        {
             Visits.Remove(VisitToRemove);
-        Visits.Add(Visit);
+            Visits.Add(Visit);
+        }
     }
 }
