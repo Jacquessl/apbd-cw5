@@ -31,25 +31,30 @@ public static class StaticData
 
     public static void DeleteAnimal(int id)
     {
+        Animal AnimalToRemove = null;
         foreach (var VARIABLE in animals)
         {
             if (VARIABLE.Id == id)
             {
-                animals.Remove(VARIABLE);
+                AnimalToRemove = VARIABLE;
             }
         }
+        if(AnimalToRemove != null)
+            animals.Remove(AnimalToRemove);
     }
 
     public static void EditAnimal(int id, Animal animal)
     {
-        
+        Animal AnimalToRemove = null;
         foreach (var VARIABLE in animals)
         {
             if (VARIABLE.Id == id)
             {
-                animals.Remove(VARIABLE);
+                AnimalToRemove = VARIABLE;
             }
         }
+        if(AnimalToRemove != null)
+            animals.Remove(AnimalToRemove);
         animals.Add(animal);
     }
 }

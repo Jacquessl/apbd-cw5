@@ -6,7 +6,7 @@ namespace WebApplication1.Controllers;
 
 
 [ApiController]
-[Route("/animals-controller")]
+[Route("/animals")]
 //[Route("[controller]")]
 public class AnimalsController : ControllerBase
 {
@@ -14,7 +14,6 @@ public class AnimalsController : ControllerBase
     [HttpGet]
     public IActionResult GetAnimals()
     {
-        
         return Ok(StaticData.GetAnimals());
     }
     [HttpGet("{id}")]
